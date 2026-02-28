@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://2sagfoj3tbh0"]
+
+[ext_resource type="Script" uid="uid://cinwsly5swrwy" path="res://bullet.gd" id="1_v7oki"]
+[ext_resource type="Texture2D" uid="uid://cg84egn7qjcg6" path="res://assets/pez_globo/Sprite2D_Proyectiles_de_agua.png" id="2_v8qja"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4vbm"]
+atlas = ExtResource("2_v8qja")
+region = Rect2(33, 0, 193, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b2rl"]
+atlas = ExtResource("2_v8qja")
+region = Rect2(226, 0, 193, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7duk"]
+atlas = ExtResource("2_v8qja")
+region = Rect2(419, 0, 193, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2bd8"]
+atlas = ExtResource("2_v8qja")
+region = Rect2(612, 0, 193, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0pa3"]
+atlas = ExtResource("2_v8qja")
+region = Rect2(33, 171, 193, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ol1o"]
+atlas = ExtResource("2_v8qja")
+region = Rect2(226, 171, 193, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gofb6"]
+atlas = ExtResource("2_v8qja")
+region = Rect2(419, 171, 193, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bibm"]
+atlas = ExtResource("2_v8qja")
+region = Rect2(612, 171, 193, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_as0xd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4vbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b2rl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7duk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2bd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0pa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ol1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gofb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bibm")
+}],
+"loop": true,
+"name": &"disparo_agua",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2eep6"]
+radius = 47.0
+
+[node name="bullet" type="Area2D" unique_id=1842393071]
+script = ExtResource("1_v7oki")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=435673244]
+visibility_layer = 3
+position = Vector2(-28, 7)
+rotation = 3.1415927
+sprite_frames = SubResource("SpriteFrames_as0xd")
+animation = &"disparo_agua"
+frame = 1
+frame_progress = 0.95285326
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=125523813]
+position = Vector2(-1.5, 7)
+shape = SubResource("CircleShape2D_2eep6")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1247834174]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

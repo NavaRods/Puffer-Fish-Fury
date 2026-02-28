@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://ig3t1bvi1463"]
+
+[ext_resource type="Script" uid="uid://c61yhd8dryn57" path="res://menu_pausa.gd" id="1_jd2x8"]
+[ext_resource type="FontFile" uid="uid://b2uq7apmiic2k" path="res://fonts/RobloxFont-Regular.ttf" id="2_tyo0u"]
+[ext_resource type="FontFile" uid="uid://rj2r0jak3e0t" path="res://fonts/Super Popstar.ttf" id="3_f0gls"]
+
+[node name="MenuPausa" type="CanvasLayer" unique_id=2126399288]
+process_mode = 3
+script = ExtResource("1_jd2x8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1896962333]
+offset_right = 1284.0
+offset_bottom = 730.0
+color = Color(1, 1, 1, 0.23529412)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=382804513]
+offset_right = 1283.0
+offset_bottom = 721.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1585504591]
+layout_mode = 2
+
+[node name="pausa" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1841505291]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_tyo0u")
+theme_override_font_sizes/font_size = 150
+text = "Pausa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Continuar" type="Button" parent="CenterContainer/VBoxContainer" unique_id=359885185]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_f0gls")
+theme_override_font_sizes/font_size = 64
+text = "CONTINUAR"
+
+[node name="Reiniciar" type="Button" parent="CenterContainer/VBoxContainer" unique_id=426276452]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_f0gls")
+theme_override_font_sizes/font_size = 64
+text = "REINICIAR"
+
+[node name="MenuPrincipal" type="Button" parent="CenterContainer/VBoxContainer" unique_id=765996834]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_f0gls")
+theme_override_font_sizes/font_size = 64
+text = "MAIN MENU"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Continuar" to="." method="_on_continuar_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Reiniciar" to="." method="_on_reiniciar_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MenuPrincipal" to="." method="_on_menu_principal_pressed"]

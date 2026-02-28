@@ -1,0 +1,9 @@
+# Godot-specific ignores
+.godot/
+metadata.res
+*.translation
+*.pck
+*.exe
+*.apk
+*.html
+*.zip

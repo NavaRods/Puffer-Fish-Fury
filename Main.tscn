@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://jqdtjpeiam5u"]
+
+[ext_resource type="PackedScene" uid="uid://d1lths6cgu0tm" path="res://player.tscn" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://o7qxh1ah4udg" path="res://main.gd" id="1_r0du0"]
+[ext_resource type="PackedScene" uid="uid://cjreenwrvf4fc" path="res://MedusaNormal.tscn" id="2_wkp8b"]
+[ext_resource type="PackedScene" uid="uid://d3bqn8fm7repj" path="res://MedusaFuerte.tscn" id="3_20pc6"]
+[ext_resource type="PackedScene" uid="uid://bximnuskaq0od" path="res://MedusaVeloz.tscn" id="4_5vvyt"]
+[ext_resource type="PackedScene" uid="uid://d183d7eionied" path="res://hud.tscn" id="4_cm0pq"]
+[ext_resource type="VideoStream" uid="uid://bxwus63f161pw" path="res://assets/fondo_de_pantalla/fondo_marino_animado.ogv" id="4_trn2v"]
+[ext_resource type="PackedScene" uid="uid://cnfo36lbtyhhg" path="res://MedusaAgresiva.tscn" id="5_c6i3y"]
+[ext_resource type="PackedScene" uid="uid://c35bkl78tg35l" path="res://power_up.tscn" id="7_20pc6"]
+[ext_resource type="AudioStream" uid="uid://5858uvjo1q8y" path="res://musica/Musica de Fondo.wav" id="11_5vvyt"]
+[ext_resource type="PackedScene" uid="uid://ig3t1bvi1463" path="res://menu_pausa.tscn" id="12_5vvyt"]
+[ext_resource type="AudioStream" uid="uid://crqfvfraaqq52" path="res://musica/GameOver.ogg" id="14_j4qnp"]
+
+[sub_resource type="Curve2D" id="Curve2D_fos0i"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3, -1, 0, 0, 0, 0, 1925, 4, 0, 0, 0, 0, 1922, 1078, 0, 0, 0, 0, 8, 1084, 0, 0, 0, 0, 3, -1)
+}
+point_count = 5
+
+[node name="Main" type="Node" unique_id=340938132]
+script = ExtResource("1_r0du0")
+mob_scenes = Array[PackedScene]([ExtResource("2_wkp8b"), ExtResource("3_20pc6"), ExtResource("4_5vvyt"), ExtResource("5_c6i3y")])
+player_scene = ExtResource("1_glv2v")
+powerup_scene = ExtResource("7_20pc6")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1031642266]
+offset_right = 1284.0
+offset_bottom = 735.0
+stream = ExtResource("4_trn2v")
+autoplay = true
+expand = true
+loop = true
+
+[node name="MobTimer" type="Timer" parent="." unique_id=359622055]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=2030056870]
+
+[node name="StartTimer" type="Timer" parent="." unique_id=857173139]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="." unique_id=631148986]
+position = Vector2(659, 352)
+
+[node name="MobPath" type="Path2D" parent="." unique_id=955489937]
+position = Vector2(1.0005203, -0.32165897)
+scale = Vector2(0.66649324, 0.67834103)
+curve = SubResource("Curve2D_fos0i")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" unique_id=2098885276]
+position = Vector2(3, -1)
+rotation = 0.0026014508
+
+[node name="HUD" parent="." unique_id=1850907985 instance=ExtResource("4_cm0pq")]
+
+[node name="PowerUpTimer" type="Timer" parent="." unique_id=655332334]
+wait_time = 6.0
+
+[node name="EffectTimer" type="Timer" parent="." unique_id=671880442]
+
+[node name="MenuPausa" parent="." unique_id=2126399288 instance=ExtResource("12_5vvyt")]
+
+[node name="BackSong" type="AudioStreamPlayer2D" parent="." unique_id=31494200]
+process_mode = 3
+stream = ExtResource("11_5vvyt")
+
+[node name="DeathSound2" type="AudioStreamPlayer2D" parent="." unique_id=1469952442]
+stream = ExtResource("14_j4qnp")
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="timeout" from="PowerUpTimer" to="." method="_on_power_up_timer_timeout"]
+[connection signal="timeout" from="EffectTimer" to="." method="_on_effect_timer_timeout"]
+[connection signal="finished" from="BackSong" to="." method="_on_back_song_finished"]

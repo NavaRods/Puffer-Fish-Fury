@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://c35bkl78tg35l"]
+
+[ext_resource type="Script" uid="uid://bxyiqnk0c6ifm" path="res://power_up.gd" id="1_jbbqn"]
+[ext_resource type="Texture2D" uid="uid://drn8tygroywu1" path="res://assets/powerups/powerup_recuperar_vida.png" id="1_wtpib"]
+[ext_resource type="Texture2D" uid="uid://dos611v88fqgm" path="res://assets/powerups/powerup_gigante_croqueta.png" id="3_hodsu"]
+[ext_resource type="Texture2D" uid="uid://bbwincf0pbogu" path="res://assets/powerups/powerup_dash_croqueta_nuevo.png" id="4_vpyfg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q4ugp"]
+radius = 34.525352
+
+[node name="PowerUp" type="Area2D" unique_id=1145718407 groups=["powerups"]]
+script = ExtResource("1_jbbqn")
+metadata/_edit_group_ = true
+
+[node name="PowerupRegenerar" type="Sprite2D" parent="." unique_id=2089083474]
+position = Vector2(2, 3)
+scale = Vector2(0.099609375, 0.099609375)
+texture = ExtResource("1_wtpib")
+
+[node name="PowerupGiganteCroqueta" type="Sprite2D" parent="." unique_id=1281001113]
+position = Vector2(-1, 1)
+scale = Vector2(0.29487172, 0.29487178)
+texture = ExtResource("3_hodsu")
+region_enabled = true
+region_rect = Rect2(220.90001, 61.7, 234.39998, 252.00002)
+
+[node name="PowerupDashCroquetaNuevo" type="Sprite2D" parent="." unique_id=2090237236]
+position = Vector2(1.0000305, 2.0000305)
+scale = Vector2(0.16899998, 0.16899998)
+texture = ExtResource("4_vpyfg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=860947863]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_q4ugp")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

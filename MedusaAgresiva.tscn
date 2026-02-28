@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cnfo36lbtyhhg"]
+
+[ext_resource type="Script" uid="uid://cxh6xmk1sfmnq" path="res://medusa_agresiva.gd" id="1_inidf"]
+[ext_resource type="Texture2D" uid="uid://w8htlqg8bqui" path="res://assets/medusas/Sp2D_MedusaAgresiva_1.png" id="1_xselm"]
+[ext_resource type="Texture2D" uid="uid://chblyatetdub" path="res://assets/medusas/Sp2D_MedusaAgresiva_2.png" id="2_inidf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_inidf"]
+bounce = 0.5
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gri5y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xselm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_inidf")
+}],
+"loop": true,
+"name": &"nadar_4",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vlm3q"]
+radius = 31.0
+height = 84.0
+
+[node name="MedusaAgresiva" type="RigidBody2D" unique_id=887486424 groups=["mobs"]]
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_inidf")
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 2
+linear_damp_mode = 1
+script = ExtResource("1_inidf")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1836564791]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=994754562]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_gri5y")
+animation = &"nadar_4"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=951378651]
+visibility_layer = 2
+position = Vector2(-2, -1)
+shape = SubResource("CapsuleShape2D_vlm3q")

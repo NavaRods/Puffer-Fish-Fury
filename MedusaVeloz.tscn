@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bximnuskaq0od"]
+
+[ext_resource type="Texture2D" uid="uid://clyiji432mhk" path="res://assets/medusas/Sp2D_MedusaVeloz_1.png" id="1_dqkxx"]
+[ext_resource type="Script" uid="uid://cs7ke1g0k1gko" path="res://medusa_veloz.gd" id="1_nc8nu"]
+[ext_resource type="Texture2D" uid="uid://64xiya2uw3pw" path="res://assets/medusas/Sp2D_MedusaVeloz_2.png" id="2_nc8nu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqkxx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dqkxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nc8nu")
+}],
+"loop": true,
+"name": &"nadar_3",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dqkxx"]
+radius = 25.0
+height = 70.0
+
+[node name="MedusaVeloz" type="RigidBody2D" unique_id=242124515 groups=["mobs", "veloz"]]
+collision_mask = 2
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp_mode = 1
+script = ExtResource("1_nc8nu")
+metadata/_edit_group_ = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1512187109]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=132498547]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_dqkxx")
+animation = &"nadar_3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1762778961]
+visibility_layer = 2
+position = Vector2(-1, -2)
+shape = SubResource("CapsuleShape2D_dqkxx")

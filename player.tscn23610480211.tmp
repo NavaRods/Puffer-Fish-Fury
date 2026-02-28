@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://d1lths6cgu0tm"]
+
+[ext_resource type="Script" uid="uid://ru58u0rus40a" path="res://player.gd" id="1_sweqy"]
+[ext_resource type="PackedScene" uid="uid://2sagfoj3tbh0" path="res://bullet.tscn" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://buh5tpcow3di3" path="res://assets/pez_globo/Sprite2D_Pez_Globo_Movimiento_de_Ataque_Normal.png" id="3_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://d28xp4h5cma7w" path="res://assets/pez_globo/Sprite2D_Pez_Globo_Hinchado.png" id="3_dw050"]
+[ext_resource type="Texture2D" uid="uid://cipfid5u2g0sy" path="res://assets/pez_globo/Sp_Pez_Globo_mov_1.png" id="4_b26j0"]
+[ext_resource type="Texture2D" uid="uid://75dwcfohc6j1" path="res://assets/pez_globo/Sprite2D_Pez_Globo_Escudo_Ataque.png" id="4_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://dlbw2677t6gok" path="res://assets/pez_globo/Sp_Pez_Globo_mov_2.png" id="5_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://cwvtv5o1ojqri" path="res://assets/pez_globo/Sp_Pez_Globo_mov_3.png" id="6_nvl01"]
+[ext_resource type="Texture2D" uid="uid://dr28ybqxoel2a" path="res://assets/pez_globo/Sprite2D_Pez_Globo_Escudo_Dash.png" id="9_ivps1"]
+[ext_resource type="Texture2D" uid="uid://b1x8fseniih0m" path="res://assets/pez_globo/Sp_Pez_Globo_Hinchado_Dash_correcto_1.png" id="10_urp6f"]
+[ext_resource type="Texture2D" uid="uid://bvxr8gnhxw7ti" path="res://assets/pez_globo/Sprite2D_Pez_Globo_Normal_Dash.png" id="11_bwjto"]
+[ext_resource type="Texture2D" uid="uid://et08ocyhpor3" path="res://assets/pez_globo/Sp_Pez_Dash_1.png" id="12_606se"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nvl01"]
+animations = [{
+"frames": [{
+"duration": 6.0,
+"texture": ExtResource("3_dw050")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_n7ghd")
+}],
+"loop": true,
+"name": &"hinchado",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i3pqv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_b26j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_n7ghd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nvl01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_n7ghd")
+}],
+"loop": true,
+"name": &"pez_1",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
+atlas = ExtResource("3_2hs0m")
+region = Rect2(241, 152, 241, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}],
+"loop": true,
+"name": &"pez_disparando",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u1c27"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ivps1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_urp6f")
+}],
+"loop": true,
+"name": &"hinchado_dash",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_op7ga"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_bwjto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_606se")
+}],
+"loop": true,
+"name": &"pez_dash",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3pqv"]
+radius = 46.0
+height = 118.0
+
+[node name="player" type="Area2D" unique_id=401186653]
+script = ExtResource("1_sweqy")
+bullet_scene = ExtResource("2_sweqy")
+speed = 800
+fuerza_dash = null
+
+[node name="SpriteHinchado" type="AnimatedSprite2D" parent="." unique_id=21972139]
+visible = false
+position = Vector2(-14, -8)
+scale = Vector2(0.63400006, 0.63400006)
+sprite_frames = SubResource("SpriteFrames_nvl01")
+animation = &"hinchado"
+
+[node name="SpriteNadar" type="AnimatedSprite2D" parent="." unique_id=1614665498 groups=["player"]]
+visibility_layer = 2
+position = Vector2(0, -2)
+sprite_frames = SubResource("SpriteFrames_i3pqv")
+animation = &"pez_1"
+frame_progress = 0.03990746
+
+[node name="SpriteDisparo" type="AnimatedSprite2D" parent="." unique_id=1882191840]
+visible = false
+visibility_layer = 2
+position = Vector2(-10, -8)
+scale = Vector2(0.6684211, 0.6684211)
+sprite_frames = SubResource("SpriteFrames_dw050")
+animation = &"pez_disparando"
+
+[node name="TimerDisparo" type="Timer" parent="." unique_id=1302321499]
+wait_time = 0.2
+one_shot = true
+
+[node name="PuntoDisparo" type="Marker2D" parent="." unique_id=1483404750]
+position = Vector2(-100, -6)
+
+[node name="TimerInvencible" type="Timer" parent="." unique_id=1121579655]
+one_shot = true
+
+[node name="TimerHinchado" type="Timer" parent="." unique_id=755051099]
+wait_time = 15.0
+autostart = true
+
+[node name="SpriteHinchadoDash" type="AnimatedSprite2D" parent="." unique_id=1374779321]
+visible = false
+position = Vector2(57, -12)
+sprite_frames = SubResource("SpriteFrames_u1c27")
+animation = &"hinchado_dash"
+
+[node name="SpriteDash" type="AnimatedSprite2D" parent="." unique_id=1361834805]
+visible = false
+position = Vector2(47.249985, -5.2499833)
+scale = Vector2(0.699, 0.699)
+sprite_frames = SubResource("SpriteFrames_op7ga")
+animation = &"pez_dash"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=378303996]
+position = Vector2(-14, -8)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_i3pqv")
+
+[node name="TimerCooldownDash" type="Timer" parent="." unique_id=1646684308]
+wait_time = 0.5
+one_shot = true
+
+[node name="TimerDuracionDash" type="Timer" parent="." unique_id=359832045]
+wait_time = 15.0
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="TimerInvencible" to="." method="_on_timer_invencible_timeout"]
+[connection signal="timeout" from="TimerCooldownDash" to="." method="_on_timer_cooldown_dash_timeout"]
+[connection signal="timeout" from="TimerDuracionDash" to="." method="_on_timer_duracion_dash_timeout"]

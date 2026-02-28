@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c35bkl78tg35l"]
+
+[ext_resource type="Script" uid="uid://bxyiqnk0c6ifm" path="res://power_up.gd" id="1_mkoic"]
+[ext_resource type="Texture2D" uid="uid://c7av6ps6fokve" path="res://assets/powerups/pu_dash.png" id="2_h1prs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wtpib"]
+radius = 15.0
+
+[node name="PowerUp" type="Area2D" unique_id=1194205669]
+script = ExtResource("1_mkoic")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=657729868]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_h1prs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=194642448]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_wtpib")
+debug_color = Color(0.8407888, 0.31107077, 0.57951975, 0.41960785)
+
+[node name="Timer" type="Timer" parent="." unique_id=2032693762]

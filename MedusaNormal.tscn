@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cjreenwrvf4fc"]
+
+[ext_resource type="Script" uid="uid://myqm3m4tamhv" path="res://medusa_normal.gd" id="1_suf0m"]
+[ext_resource type="Texture2D" uid="uid://c4f06ieh5ds8v" path="res://assets/medusas/Sp2D_MedusaNormal_1.png" id="1_v6o30"]
+[ext_resource type="Texture2D" uid="uid://cgrwojyyn5uxr" path="res://assets/medusas/Sp2D_MedusaNormal_2.png" id="2_suf0m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v6o30"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v6o30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_suf0m")
+}],
+"loop": true,
+"name": &"nadar_1",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_suf0m"]
+radius = 53.0
+height = 146.0
+
+[node name="MedusaNormal" type="RigidBody2D" unique_id=1991923843]
+collision_mask = 2
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp_mode = 1
+script = ExtResource("1_suf0m")
+metadata/_edit_group_ = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=622299020]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1374253969]
+visibility_layer = 2
+texture_filter = 1
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_v6o30")
+animation = &"nadar_1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1351720264]
+visibility_layer = 2
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_suf0m")

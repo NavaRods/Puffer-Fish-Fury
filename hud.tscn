@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://d183d7eionied"]
+
+[ext_resource type="Script" uid="uid://doemqwpbbupwg" path="res://hud.gd" id="1_64ctp"]
+[ext_resource type="FontFile" uid="uid://b2uq7apmiic2k" path="res://fonts/RobloxFont-Regular.ttf" id="2_8sq4i"]
+[ext_resource type="FontFile" uid="uid://rj2r0jak3e0t" path="res://fonts/Super Popstar.ttf" id="3_640wx"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_64ctp"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_8sq4i"]
+events = [SubResource("InputEventAction_64ctp")]
+
+[node name="HUD" type="CanvasLayer" unique_id=1850907985]
+script = ExtResource("1_64ctp")
+
+[node name="LabelTiempo" type="Label" parent="." unique_id=1671025498]
+anchors_preset = -1
+anchor_left = 0.873
+anchor_right = 0.873
+offset_left = -240.16003
+offset_right = 238.83997
+offset_bottom = 125.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_8sq4i")
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="." unique_id=612389556]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -377.0
+offset_top = -309.0
+offset_right = 378.5
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_640wx")
+theme_override_font_sizes/font_size = 128
+text = "Puffer Fish Fury"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="." unique_id=748318837]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.75
+offset_top = 164.0
+offset_right = 122.75
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_640wx")
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_8sq4i")
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=1174470104]
+wait_time = 2.0
+one_shot = true
+
+[node name="EffectsLabel" type="Label" parent="." unique_id=635610014]
+offset_right = 183.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0.4117647, 1, 0.1764706, 1)
+theme_override_font_sizes/font_size = 16
+
+[node name="ContenedorCorazones" type="HBoxContainer" parent="." unique_id=886545026]
+offset_left = 30.0
+offset_top = 29.0
+offset_right = 104.0
+offset_bottom = 103.0
+
+[node name="LabelPuntos" type="Label" parent="." unique_id=1744346801]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -314.5
+offset_right = 314.5
+offset_bottom = 121.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_640wx")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
