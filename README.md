@@ -1,5 +1,6 @@
 <img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/b71dd2e3-3601-409b-ae14-e2c617157e1c" />
 
+Itch-io: https://karlosdev.itch.io/puffer-fish-fury
 
 Puffer Fish FuryPuffer Fish Fury
 
